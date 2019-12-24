@@ -3,12 +3,12 @@ class GridGame{
 	private int ball_x,ball_y;
 	private int count = 0;
 
-	public void gameSetup(){
+	public GridGame(){
 		ball_x = (int) (Math.random()*11);
 		ball_y = (int) (Math.random()*11);
-		System.out.println("\n\nBall position is ("+ball_x+","+ball_y+")");
 	}
 	public void start(){
+		System.out.println("\n\nBall position is ("+ball_x+","+ball_y+")");
 		System.out.println("You are ready to start the game.....\n");
 		
 		System.out.print("("+x_co+","+y_co+")");
