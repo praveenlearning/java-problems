@@ -6,22 +6,30 @@ class GridGame{
 	public void gameSetup(){
 		ball_x = (int) (Math.random()*11);
 		ball_y = (int) (Math.random()*11);
-		System.out.println("Ball position is ("+ball_x+","+ball_y+")");
+		System.out.println("\n\nBall position is ("+ball_x+","+ball_y+")");
 	}
 	public void start(){
 		System.out.println("You are ready to start the game.....\n");
 		
+		System.out.print("("+x_co+","+y_co+")");
 		while(x_co!=ball_x || y_co!=ball_y){
-			System.out.print("you are moving from ("+x_co+","+y_co+") to ");
 			
-			if(x_co<ball_x)
+			
+			if(x_co<ball_x){
+				System.out.print(" --> ");
 				x_co++;
+				count++;
+				System.out.print("("+x_co+","+y_co+")");
+			}
 			
-			if(y_co<ball_y)
+			if(y_co<ball_y){
+				System.out.print(" --> ");
 				y_co++;
-			count++;
-			System.out.print("("+x_co+","+y_co+").\n");
+				count++;
+				System.out.print("("+x_co+","+y_co+")");
+			}
+			
 		}
-		System.out.println("\nYeah...\n\nYou reached the ball in "+count+"steps");
+		System.out.println("\nYeah...\nYou reached the ball in "+count+" steps");
 	}
 }
