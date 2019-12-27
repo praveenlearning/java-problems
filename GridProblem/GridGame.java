@@ -1,14 +1,15 @@
 class GridGame{
 	int x_co = 0,y_co = 0;
 	private int ball_x,ball_y;
+	int x_max = 10,x_min = 0,y_max = 10,y_min = 0;
 	private int count = 0;
 
-	public void gameSetup(){
-		ball_x = (int) (Math.random()*11);
-		ball_y = (int) (Math.random()*11);
-		System.out.println("\n\nBall position is ("+ball_x+","+ball_y+")");
+	public GridGame(){
+		ball_x = x_min + (int) (Math.random()*(x_max-x_min+1));
+		ball_y = y_min + (int) (Math.random()*(y_max-y_min+1));
 	}
 	public void start(){
+		System.out.println("\n\nBall position is ("+ball_x+","+ball_y+")");
 		System.out.println("You are ready to start the game.....\n");
 		
 		System.out.print("("+x_co+","+y_co+")");
