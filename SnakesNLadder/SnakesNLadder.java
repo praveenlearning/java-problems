@@ -26,11 +26,13 @@ class SnakesNLadder {
                     break;
             }
         }
+        System.out.println("Total dice rolls : "+d.diceRolls);
         System.out.println(winner.name+" wins the game");
     }
 
     void move(int diceValue, Player p) {
-        p.current_location += diceValue;
+        if(p.getLocation()+diceValue <= finalLocation)
+            p.current_location += diceValue;
         if (b.snakes.get(p.getLocation()) != null) {
             System.out.println("OOPS...Snake bite to "+b.snakes.get(p.getLocation()));
             p.current_location = b.snakes.get(p.getLocation());
