@@ -21,7 +21,15 @@ class SnakesNLadder {
                 in.nextLine();
                 diceValue = d.roll();
                 System.out.println(diceValue);
+                while(diceValue%6 == 0) {
+                    System.out.println("you got 6 roll again..");
+                    System.out.println("press enter to roll dice...");
+                    in.nextLine();
+                    diceValue += d.roll();
+                }
+                System.out.println("move "+diceValue+" steps");
                 move(diceValue, p);
+                //System.out.println("current location "+p.getLocation());
                 if(isWinner(p))
                     break;
             }
@@ -41,6 +49,7 @@ class SnakesNLadder {
             System.out.println("YEAH....Ladder to "+b.ladders.get(p.getLocation()));
             p.current_location = b.ladders.get(p.getLocation());
         }
+        System.out.println("current location "+p.getLocation());
         System.out.print("\n");
     }
     boolean isWinner(Player p) {
