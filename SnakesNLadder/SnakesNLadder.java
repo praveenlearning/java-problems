@@ -10,8 +10,8 @@ class SnakesNLadder {
     public SnakesNLadder() {
         d = new Dice();
         b = new Board();
-        players[0] = new Player("java");
-        players[1] = new Player("python");
+        players[0] = new Player("Tony");
+        players[1] = new Player("Cap");
     }
 
     void play() {
@@ -22,14 +22,17 @@ class SnakesNLadder {
                 diceValue = d.roll();
                 System.out.println(diceValue);
                 while(diceValue%6 == 0) {
+                    System.out.println("move "+diceValue+" steps");
+                    if(diceValue+p.getLocation()>100)
+                        break;
+                    move(diceValue, p);
                     System.out.println("you got 6 roll again..");
                     System.out.println("press enter to roll dice...");
                     in.nextLine();
-                    diceValue += d.roll();
+                    diceValue = d.roll();
                 }
                 System.out.println("move "+diceValue+" steps");
                 move(diceValue, p);
-                //System.out.println("current location "+p.getLocation());
                 if(isWinner(p))
                     break;
             }
