@@ -7,15 +7,15 @@ public class Player {
         this.sign = sign;
         //System.out.println(name+""+sign);
     }
-    void mark(Grid g) {
+    void mark(Grid grid) {
         int x,y;
-        g.showBox();
+        grid.showBox();
         boolean flag = false;
         while(flag==false) {
             System.out.println(name+" enter box location");
             x = in.nextInt();
             y = in.nextInt();
-            flag = g.fillBox(x, y, sign);
+            flag = grid.fillBox(x, y, sign);
         }
     }
 }

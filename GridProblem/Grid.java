@@ -1,6 +1,8 @@
 class Grid {
+    static int gridSize;
     Ball ball;
-    Grid() {
+    Grid(int gridSize) {
+        this.gridSize = gridSize;
         ball = new Ball();
     }
     Ball getBall() {

@@ -1,46 +1,44 @@
 import java.util.Scanner;
 public class TicTacToe {
-    Grid g;
+    Grid grid;
     Player winner;
-    Player p1,p2;
+    Player player1,player2;
     Scanner in = new Scanner(System.in);
 
     TicTacToe() {
-        g = new Grid();
+        grid = new Grid();
         System.out.println("Player1 name : ");
-        p1 = new Player(in.next(),"o");
+        player1 = new Player(in.next(),"o");
         System.out.println("Playe2 name : ");
-        p2 = new Player(in.next(),"x");
+        player2 = new Player(in.next(),"x");
     }
     void play() {
         while(isGameAlive()) {
-            p1.mark(g);
-            if (checkWinner(p1)) {
-                winner = p1;
+            player1.mark(grid);
+            if (checkWinner(player1)) {
+                winner = player1;
                 break;
             }
-            p2.mark(g);
-            if (checkWinner(p2)) {
-                winner = p2;
+            player2.mark(grid);
+            if (checkWinner(player2)) {
+                winner = player2;
                 break;
             }
         }
-        g.showBox();
+        grid.showBox();
     }
-    boolean checkWinner(Player p) {
-        String[][] box = g.box;
+    boolean checkWinner(Player player) {
+        String[][] box = grid.box;
         boolean flag = false;
         for(int i=0;i<box.length;i++) {
-            flag = flag || (box[i][0]+box[i][1]+box[i][2]).equals(p.sign+p.sign+p.sign) || (box[0][i]+box[1][i]+box[2][i]).equals(p.sign+p.sign+p.sign);
+            flag = flag || (box[i][0]+box[i][1]+box[i][2]).equals(player.sign + player.sign + player.sign) || (box[0][i] + box[1][i] + box[2][i]).equals(player.sign + player.sign + player.sign);
         }
-        flag = flag || (box[0][0]+box[1][1]+box[2][2]).equals(p.sign+p.sign+p.sign) || (box[0][2]+box[1][1]+box[2][0]).equals(p.sign+p.sign+p.sign);
+        flag = flag || (box[0][0] + box[1][1] + box[2][2]).equals(player.sign + player.sign + player.sign) || (box[0][2] + box[1][1] + box[2][0]).equals(player.sign + player.sign + player.sign);
         return flag;
     }
     boolean isGameAlive() {
-        System.out.println("here 1");
-        if(winner==null) {
-            System.out.println("here 2");
-            if(g.isFull())
+        if(winner == null) {
+            if(grid.isFull())
                 return false;
             else
                 return true;

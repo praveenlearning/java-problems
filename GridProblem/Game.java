@@ -1,35 +1,34 @@
 class Game{
-	Player p;
+	Player player;
 	Grid grid;
-	Ball b;
+	Ball ball;
 	int count = 0;
 	Game() {
-		p = new Player();
-		grid = new Grid();
-		b = grid.getBall();
+		player = new Player();
+		grid = new Grid(10);
+		ball = grid.getBall();
 	}
 
 	void start() {
-		while(p.x!=b.getX() || p.y!=b.getY()) {
-			if(p.x<b.getX()){
+		while(player.x!=ball.getX() || player.y!=ball.getY()) {
+			if(player.x<ball.getX()){
 				move("right");
 			}
-			if(p.y<b.getY()){
+			if(player.y<ball.getY()){
 				move("up");
 			}
 		}
-		System.out.println("ball position ("+b.getX()+","+b.getY()+")");
-		System.out.println("reached ball in "+count+" steps");
-		System.out.println(p.name+" completed game");
+		System.out.println("ball position ("+ball.getX()+","+ball.getY()+")");
+		System.out.println(player.name+" reached ball in "+count+" steps");
 	}
 
-	void move(String cmd) {
-		if(cmd == "right"){
-			p.x = p.x + 1;
+	void move(String command) {
+		if(command == "right"){
+			player.x++;
 		}
-		else if(cmd == "up") {
-			p.y = p.y + 1;
+		else if(command == "up") {
+			player.y++;
 		}
-		count += 1;
+		count++;
 	}
 }

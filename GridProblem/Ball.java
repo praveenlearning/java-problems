@@ -1,8 +1,8 @@
 class Ball {
     private int x,y;
     Ball() {
-        x = (int) (Math.random()*10);
-        y = (int) (Math.random()*10);
+        x = (int) (Math.random()*Grid.gridSize);
+        y = (int) (Math.random()*Grid.gridSize);
     }
 
     int getX() {
