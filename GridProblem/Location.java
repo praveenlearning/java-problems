@@ -5,13 +5,6 @@ class Location {
         this.x = x;
         this.y = y;
     }
-    Location updateLocation(Location location, String command) {
-        if(command == "right")
-            location.x = location.x+1;
-        if(command == "up")
-            location.y = location.y+1;
-        return location;
-    }
 
     boolean equals(Location location1) {
         if(x == location1.x && y == location1.y)
