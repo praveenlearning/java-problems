@@ -1,15 +1,8 @@
 class Ball {
-    private int x,y;
+    Location ball_location;
     Ball() {
-        x = (int) (Math.random()*Grid.gridSize);
-        y = (int) (Math.random()*Grid.gridSize);
-    }
-
-    int getX() {
-        return x;
-    }
-
-    int getY() {
-        return y;
+        ball_location = new Location((int) (Math.random()*Grid.gridSize),(int) (Math.random()*Grid.gridSize));
+        System.out.print("Ball is at ");
+        ball_location.display();
     }
 }

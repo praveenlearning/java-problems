@@ -1,12 +1,12 @@
 class Game{
-	Player player;
+	//Player player;
 	Grid grid;
-	Ball ball;
+	//Ball ball;
 	int count = 0;
 	Game() {
-		player = new Player();
-		grid = new Grid(10);
-		ball = grid.getBall();
+		//player = new Player();
+		//grid = new Grid(10);
+		//ball = grid.getBall();
 	}
 
 	void start() {
@@ -22,13 +22,5 @@ class Game{
 		System.out.println(player.name+" reached ball in "+count+" steps");
 	}
 
-	void move(String command) {
-		if(command == "right"){
-			player.x++;
-		}
-		else if(command == "up") {
-			player.y++;
-		}
-		count++;
-	}
+
 }

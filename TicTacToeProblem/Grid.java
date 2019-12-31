@@ -1,5 +1,5 @@
 public class Grid {
-    String[][] box;
+    static String[][] box;
     Grid() {
         box = new String[][] {{"_","_","_"},{"_","_","_"},{"_","_","_"}};
     }

@@ -31,9 +31,9 @@ public class TicTacToe {
         String[][] box = grid.box;
         boolean flag = false;
         for(int i=0;i<box.length;i++) {
-            flag = flag || (box[i][0]+box[i][1]+box[i][2]).equals(player.sign + player.sign + player.sign) || (box[0][i] + box[1][i] + box[2][i]).equals(player.sign + player.sign + player.sign);
+            flag = verticalCheck(i, player.sign) || horizontalCheck(i, player.sign);
         }
-        flag = flag || (box[0][0] + box[1][1] + box[2][2]).equals(player.sign + player.sign + player.sign) || (box[0][2] + box[1][1] + box[2][0]).equals(player.sign + player.sign + player.sign);
+        flag = flag || diagonalCheck(player.sign);
         return flag;
     }
     boolean isGameAlive() {
@@ -45,5 +45,31 @@ public class TicTacToe {
         }
         else
             return false;
+    }
+
+    boolean verticalCheck(int column, String sign) {
+        String check = "";
+        for(int i=0;i<Grid.box.length;i++)
+            check += Grid.box[i][column];
+            return check.equals(sign+sign+sign);
+    }
+
+    boolean horizontalCheck(int row, String sign) {
+        String check = "";
+        for(int i=0;i<Grid.box.length;i++)
+            check += Grid.box[row][i];
+        return check.equals(sign+sign+sign);
+    }
+
+    boolean diagonalCheck(String sign) {
+        String check = "";
+        boolean flag;
+        for(int i=0;i<Grid.box.length;i++)
+            check += Grid.box[i][i];
+        flag = check.equals(sign+sign+sign);
+        for(int i=0;i<Grid.box.length;i++)
+            check += Grid.box[i][Grid.box.length-i-1];
+        flag = flag || check.equals(sign+sign+sign);
+        return flag;
     }
 }

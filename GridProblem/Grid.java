@@ -1,11 +1,15 @@
 class Grid {
-    static int gridSize;
+    static int gridSize, count;
     Ball ball;
+    Player player;
+    boolean isReached;
     Grid(int gridSize) {
         this.gridSize = gridSize;
         ball = new Ball();
+        player = new Player();
     }
-    Ball getBall() {
-        return ball;
+
+    void start() {
+        player.findPathTo(ball);
     }
 }

@@ -1,6 +1,6 @@
 class Main {
 	public static void main(String[] args) {
-		Game game = new Game();
-		game.start();
+		Grid grid = new Grid(10);
+		grid.start();
 	}
 }

@@ -1,70 +1,75 @@
 import java.util.Scanner;
 class SnakesNLadder {
-    Dice d;
-    Board b;
+    Dice dice;
+    Board board;
     Scanner in = new Scanner(System.in);
     Player winner;
     int diceValue;
     Player[] players = new Player[2];
     final int finalLocation = 100;
     public SnakesNLadder() {
-        d = new Dice();
-        b = new Board();
+        dice = new Dice();
+        board = new Board();
         players[0] = new Player("Tony");
         players[1] = new Player("Cap");
     }
 
     void play() {
         while(winner == null) {
-            for (Player p : players) {
-                System.out.println(p.name + ", you are at " + p.getLocation() + "\npress enter to roll dice...");
+            for (Player player : players) {
+                System.out.println(player.name + ", you are at " + player.getLocation() + "\npress enter to roll dice...");
                 in.nextLine();
-                diceValue = d.roll();
+                diceValue = dice.roll();
                 System.out.println(diceValue);
                 while(diceValue%6 == 0) {
-                    System.out.println("move "+diceValue+" steps");
-                    if(diceValue+p.getLocation()>100)
+                    if(diceValue+player.getLocation()>100) {
+                        System.out.println("Exceeds 100");
                         break;
-                    move(diceValue, p);
+                    }
+                    System.out.println("move "+diceValue+" steps");
+                    move(diceValue, player);
+                    if(isWinner(player))
+                        break;
                     System.out.println("you got 6 roll again..");
                     System.out.println("press enter to roll dice...");
                     in.nextLine();
-                    diceValue = d.roll();
+                    diceValue = dice.roll();
                 }
                 System.out.println("move "+diceValue+" steps");
-                move(diceValue, p);
-                if(isWinner(p))
+                move(diceValue, player);
+                if(isWinner(player))
                     break;
+                System.out.println("<-->  <-->  <-->\n");
             }
         }
-        System.out.println("Total dice rolls : "+d.diceRolls);
+        System.out.println("Total dice rolls : "+dice.diceRolls);
         System.out.println(winner.name+" wins the game");
     }
 
-    void move(int diceValue, Player p) {
-        if(p.getLocation()+diceValue <= finalLocation)
-            p.current_location += diceValue;
-        if (b.snakes.get(p.getLocation()) != null) {
-            System.out.println("OOPS...Snake bite to "+b.snakes.get(p.getLocation()));
-            p.current_location = b.snakes.get(p.getLocation());
+    void move(int diceValue, Player player) {
+        if(player.getLocation()+diceValue <= finalLocation)
+            player.current_location += diceValue;
+        if (board.snakes.get(player.getLocation()) != null) {
+            System.out.println("OOPS...Snake bite to "+board.snakes.get(player.getLocation()));
+            player.current_location = board.snakes.get(player.getLocation());
         }
-        else if (b.ladders.get(p.getLocation()) != null) {
-            System.out.println("YEAH....Ladder to "+b.ladders.get(p.getLocation()));
-            p.current_location = b.ladders.get(p.getLocation());
+        else if (board.ladders.get(player.getLocation()) != null) {
+            System.out.println("YEAH....Ladder to "+board.ladders.get(player.getLocation()));
+            player.current_location = board.ladders.get(player.getLocation());
         }
-        System.out.println("current location "+p.getLocation());
+        System.out.println("current location "+player.getLocation());
         System.out.print("\n");
     }
-    boolean isWinner(Player p) {
-        if(p.getLocation() < finalLocation)
+    boolean isWinner(Player player) {
+        if(player.getLocation() < finalLocation)
             return false;
         else {
-            setWinner(p);
+            setWinner(player);
             return true;
         }
     }
 
-    void setWinner(Player p) {
-        winner = p;
+    void setWinner(Player player) {
+        winner = player;
     }
 }
