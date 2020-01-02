@@ -1,8 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 class Board {
-    HashMap<Integer, Integer> snakes = new HashMap<>();
-    HashMap<Integer, Integer> ladders = new HashMap<>();
+    static HashMap<Integer, Integer> snakes = new HashMap<>();
+    static HashMap<Integer, Integer> ladders = new HashMap<>();
 
     Board() {
         snakes.put(99,21);
@@ -18,5 +18,19 @@ class Board {
         ladders.put(47,84);
         ladders.put(70,87);
         ladders.put(71,91);
+    }
+
+    static int checkForSnakesNLadders(int playerLocation) {
+        if(snakes.containsKey(playerLocation)) {
+            System.out.println("OOPS...Snake bite to "+snakes.get(playerLocation));
+            return snakes.get(playerLocation);
+        }
+
+        else if(ladders.containsKey(playerLocation)) {
+            System.out.println("YEAH....Ladder to "+ladders.get(playerLocation));
+            return ladders.get(playerLocation);
+        }
+        else
+            return playerLocation;
     }
 }

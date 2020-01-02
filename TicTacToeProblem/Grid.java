@@ -26,14 +26,38 @@ public class Grid {
         }
     }
     boolean isFull(){
-        boolean full = true;
+        boolean isfull = true;
         for(int i=0;i<box.length;i++){
             for(int j=0;j<box[i].length;j++){
-                if(box[i][j]=="_"){
-                    full = full && false;
-                }
+                if(box[i][j]=="_")
+                    isfull = false;
             }
         }
         return full;
+    }
+    boolean verticalCheck(int column, String sign) {
+        String check = "";
+        for(int i=0;i<box.length;i++)
+            check += box[i][column];
+        return check.equals(sign+sign+sign);
+    }
+
+    boolean horizontalCheck(int row, String sign) {
+        String check = "";
+        for(int i=0;i<box.length;i++)
+            check += box[row][i];
+        return check.equals(sign+sign+sign);
+    }
+
+    boolean diagonalCheck(String sign) {
+        String check = "";
+        boolean flag;
+        for(int i=0;i<box.length;i++)
+            check += box[i][i];
+        flag = check.equals(sign+sign+sign);
+        for(int i=0;i<box.length;i++)
+            check += box[i][box.length-i-1];
+        flag = flag || check.equals(sign+sign+sign);
+        return flag;
     }
 }
