@@ -5,17 +5,15 @@ public class Player {
     Player(String name, String sign) {
         this.name = name;
         this.sign = sign;
-        //System.out.println(name+""+sign);
     }
     void mark(Grid grid) {
         int x,y;
         grid.showBox();
-        boolean flag = false;
-        while(flag==false) {
+        boolean marked = false;
+        while(marked == false) {
             System.out.println(name+" enter box location");
             x = in.nextInt();
-            y = in.nextInt();
-            flag = grid.fillBox(x, y, sign);
+            marked = grid.fillBox(x, sign);
         }
     }
 }

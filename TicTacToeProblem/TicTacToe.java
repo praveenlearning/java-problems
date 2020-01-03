@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class TicTacToe {
     Grid grid;
     boolean hasWinner;
-    Player player1,player2;
+    Player player1,player2,winner;
     Scanner in = new Scanner(System.in);
 
     TicTacToe() {
@@ -13,37 +13,46 @@ public class TicTacToe {
         player2 = new Player(in.next(),"x");
     }
     void play() {
-        while(!hasWinner) {
+        while(hasWinner == false) {
             player1.mark(grid);
             if (checkWinner(player1)) {
                 winner = player1;
+                hasWinner = true;
                 break;
             }
+            if(grid.isFull())
+                break;
             player2.mark(grid);
             if (checkWinner(player2)) {
                 winner = player2;
+                hasWinner = true;
                 break;
             }
+            if(grid.isFull())
+                break;
         }
         grid.showBox();
+        if(hasWinner) {
+            System.out.println("player " + winner.name + " wins");
+        } else {
+            System.out.println("DRAW");
+        }
+
     }
     boolean checkWinner(Player player) {
-        String[][] box = grid.box;
-        boolean flag = false;
-        for(int i=0;i<box.length;i++) {
-            flag = verticalCheck(i, player.sign) || horizontalCheck(i, player.sign);
-        }
-        flag = flag || diagonalCheck(player.sign);
-        return flag;
-    }
-    boolean isGameAlive() {
-        if(winner == null) {
-            if(grid.isFull())
-                return false;
-            else
-                return true;
-        }
-        else
+        if (grid.verticalCheck()) {
+            return true;
+        } else if (grid.horizontalCheck()) {
+            return true;
+        } else if (grid.diagonalCheck()) {
+            return true;
+        } else {
             return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        TicTacToe game = new TicTacToe();
+        game.play();
     }
 }
